@@ -1,26 +1,26 @@
-import *  as React from 'react';;
+import *  as React from 'react';import AddCartButton from '../component/cart/addCartButton';
+import { useAppSelector } from '../component/config/hooks';
+;
 import styles from '../styles/Home.module.scss';
 
-interface ProductProps{
-  productImg: string;
-  productPrice: number;
-  productDesc: string;
-  productTite: string;
-}
-
-const Product:React.FC<ProductProps> = ({productImg, productPrice, productDesc, productTite}) => {
+const Product:React.FC = () => {
+  const product = useAppSelector(state => state.products.product);
+  console.log(typeof {})
   return(
     <>
         <section className={`${styles.section} ${styles.product_detail}`}>
           <div className={`${styles.details}`}>
             <div className={styles.left}>
               <div className={styles.main}>
-                <img src="./images/head.png" alt="" />
+                {/*@ts-ignore*/}
+                <img src={product.image} alt="" />
               </div>
             </div>
             <div className={styles.right}>
-              <h1>Black Headphone</h1>
-              <div className={styles.price}>$50</div>
+              {/*@ts-ignore*/}
+              <h1> {product.title} </h1>
+              {/*@ts-ignore*/}
+              <div className={styles.price}> {product.price} </div>
               <div className={styles.quan__area}>
                 <div className={styles.quantity}>
                   <button className={styles.minus_btn} type="button" name="button">
@@ -31,10 +31,11 @@ const Product:React.FC<ProductProps> = ({productImg, productPrice, productDesc, 
                     <img src="./images/plus.svg" alt="" />
                   </button>
                 </div>
-                <button className={styles.addcart__btn}>Add To Cart</button>
+                <AddCartButton />
               </div>
               <h3>Product Description</h3>
-              <p>Note:The Jackets is US standard size, Please choose size as your usual wear Material: 100% Polyester; Detachable Liner Fabric: Warm Fleece. Detachable Functional Liner: Skin Friendly, Lightweigt and Warm.Stand Collar Liner jacket, keep you warm in cold weather. Zippered Pockets: 2 Zippered Hand Pockets, 2 Zippered Pockets on Chest (enough to keep cards or keys)and 1 Hidden Pocket Inside.Zippered Hand Pockets and Hidden Pocket keep your things secure. Humanized Design: Adjustable and Detachable Hood and Adjustable cuff to prevent the wind and water,for a comfortable fit. 3 in 1 Detachable Design provide more convenience, you can separate the coat and inner as needed, or wear it together. It is suitable for different season and help you adapt to different climates</p>
+              {/*@ts-ignore*/}
+              <p> {product.description} </p>
             </div>
           </div>
         </section>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styles from '../styles/Home.module.scss';
-import CartProduct from '../component/CartProduct'
+import CartProduct from '../component/cart/CartProduct'
 const Cart:React.FC = () => {
   return (
     <>
