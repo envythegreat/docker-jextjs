@@ -1,37 +1,32 @@
 import React, {FC} from 'react';
 import styles from '../../styles/Home.module.scss'
-import {singleProduct, State} from '../config/store'
 import Link from 'next/link';
-import { useAppDispatch } from '../config/hooks';
-import AddCartButton from '../cart/addCartButton';
+import { useAppDispatch, singleProduct, myProduct } from '../config/';
+import {AddCartButton} from '../cart';
 
 interface PropsProduct {
-  imgLink?: string
-  productTitle?: string
-  productPrice?: number
-  productCurrency?: string
-  productID: number;
+  product : myProduct
 }
 {/* <Link href={{ pathname: '/Product', query: { id: productID} }}>View Now</Link> */}
 
-const Product:FC<PropsProduct> = ({imgLink, productTitle, productPrice, productCurrency, productID}) => {
+const Product:FC<PropsProduct> = ({product}) => {
   const dispatch = useAppDispatch();
   return(
     <>
       <div className={styles.card}>
-        <img src={imgLink} alt="" />
+        <img src={product.image} alt="" />
         <div className={styles.content}>
           <div className={styles.row}>
             <div className={styles.details}>
-              <span>{productTitle}</span>
+              <span>{product.title}</span>
             </div>
-            <div className={styles.price}>{productPrice} {productCurrency}</div>
+            <div className={styles.price}>{product.price}</div>
           </div>
           <div className={styles.buttons}>
-            <button onClick={() => dispatch(singleProduct(productID))}>
+            <button onClick={() => dispatch(singleProduct(product.id))}>
                 <Link href="/Product">View More</Link>
             </button>
-            <AddCartButton />
+            <AddCartButton product={product} />
           </div>
         </div>
       </div>

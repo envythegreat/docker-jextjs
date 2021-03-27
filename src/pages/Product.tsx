@@ -1,6 +1,6 @@
-import *  as React from 'react';import AddCartButton from '../component/cart/addCartButton';
+import *  as React from 'react';
+import {AddCartButton} from '../component/cart/';
 import { useAppSelector } from '../component/config/hooks';
-;
 import styles from '../styles/Home.module.scss';
 
 const Product:React.FC = () => {
@@ -26,7 +26,7 @@ const Product:React.FC = () => {
                   <button className={styles.minus_btn} type="button" name="button">
                     <img src="./images/minus.svg" alt="" />
                   </button>
-                  <input type="text" name="name" value="1" />
+                  <input type="text" name="name" />
                   <button className={styles.plus_btn} type="button" name="button">
                     <img src="./images/plus.svg" alt="" />
                   </button>

@@ -1,7 +1,15 @@
 import * as React from 'react';
+import { getCookies, myProduct } from '../component/config';
 import styles from '../styles/Home.module.scss';
-import CartProduct from '../component/cart/CartProduct'
+import {CartProduct} from '../component/cart';
+
+
+
 const Cart:React.FC = () => {
+  let datas = getCookies();
+  const Listitems = datas.map( (item:myProduct)=> {
+    return <CartProduct product={item} />
+  })
   return (
     <>
     <div className={styles.maons}>
@@ -9,9 +17,7 @@ const Cart:React.FC = () => {
       <div className={styles.title__cart}>
         Shopping Bag
       </div>
-      <CartProduct />
-      <CartProduct />
-      <CartProduct />
+      {Listitems}
       <div className={styles.amount__cart}>
         <span>Total amount : </span>
         <span>500 $</span>

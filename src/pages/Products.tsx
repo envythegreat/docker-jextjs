@@ -1,5 +1,5 @@
 import * as  React from 'react';
-import ProductList from '../component/product/ProductList';
+import {ProductList} from '../component/product';
 import styles from '../styles/Home.module.scss'
 
 

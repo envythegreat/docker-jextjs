@@ -4,18 +4,11 @@ import styles from '../styles/Home.module.scss';
 import Hero from '../component/Hero';
 import ProductList from '../component/product/ProductList';
 import Link from 'next/link';
-import {GetServerSideProps, NextPage} from 'next';
-import {addProducts} from '../component/config/store';
-import { Api } from '../component/config/api';
-import { useAppDispatch } from '../component/config/hooks';
+import {GetServerSideProps} from 'next';
+import {addProducts, Api, useAppDispatch} from '../component/config/';
+import Cookies from 'js-cookie'
 
-// export const getServerSideProps = wrapper.getServerSideProps(
-//   async ({store}) => {
-//     const URL = 'https://fakestoreapi.com/products';
-//     const res = Api(URL);
-//     store.dispatch(addProducts((await res).data))
-//   }
-// );
+
 
 interface Props {
   data: []

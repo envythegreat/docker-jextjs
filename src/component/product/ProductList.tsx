@@ -1,7 +1,7 @@
 import React, {FC} from 'react'
 import styles from '../../styles/Home.module.scss'
 import Product from './Product';
-import { useAppSelector } from '../config/hooks';
+import { useAppSelector } from '../config';
 
 interface props{
   nextpage?: number;
@@ -14,13 +14,7 @@ const ProductList:FC <props>= ({nextpage, curentpage}) => {
   }
   const products = useAppSelector(state => state.products.products.slice(curentpage, nextpage));
   const listProducts = products.map( product => {
-    return <Product 
-              imgLink={product.image}
-              key={product.id}
-              productTitle={limitString(20, product.title)}
-              productPrice={product.price}
-              productID={product.id} 
-          />
+    return <Product product={product} />
   })
   return(
     <>
