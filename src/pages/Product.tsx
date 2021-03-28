@@ -6,7 +6,10 @@ import styles from '../styles/Home.module.scss';
 const Product:FC = () => {
 
 
-  const product = useAppSelector(state => state.products.product);
+  const [product, setProduct] = useState({});
+  useEffect(() => {
+    setProduct(useAppSelector(state => state.products.product))
+  })
   
 
   const [quantity, setQuantity] = useState(1);
@@ -15,10 +18,10 @@ const Product:FC = () => {
   const rate = useAppSelector(state => state.rate.singleRate)
   
   const prodect = {
-    id: product.id,
-    image:product.image,
-    title:product.title,
-    price:product.price,
+    id: product['id'],
+    image:product['image'],
+    title:product['title'],
+    price:product['price'],
     Quantity: quantity
   }
   return(
@@ -28,14 +31,14 @@ const Product:FC = () => {
             <div className={styles.left}>
               <div className={styles.main}>
                 
-                <img src={product.image} alt="" />
+                <img src={product['image']} alt="" />
               </div>
             </div>
             <div className={styles.right}>
               
-              <h1> {product.title} </h1>
+              <h1> {product['title']} </h1>
               
-              <div className={styles.price}> {(product.price * rate['rate']).toFixed(2)} {rate['sign']} </div>
+              <div className={styles.price}> {(product['price'] * rate['rate']).toFixed(2)} {rate['sign']} </div>
               <div className={styles.quan__area}>
                 <div className={styles.quantity}>
                   <button className={styles.minus_btn} type="button" name="button" onClick={minusOne}>
@@ -49,7 +52,7 @@ const Product:FC = () => {
                 <AddCartButton product={prodect} />
               </div>
               <h3>Product Description</h3>
-              <p> {product.description} </p>
+              <p> {product['description']} </p>
             </div>
           </div>
         </section>

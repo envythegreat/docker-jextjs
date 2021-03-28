@@ -26,11 +26,11 @@ const Product:FC<PropsProduct> = ({product}) => {
             <div className={styles.price}>{(product.price * rate['rate']).toFixed(2)} {rate['sign']}</div>
           </div>
           <div className={styles.buttons}>
-            <Link href="/Product">
+            
               <button onClick={() => dispatch(singleProduct(product.id))}>
-                View More
+              <Link href="/Product">View More</Link>
               </button>
-            </Link>
+            
             <AddCartButton product={product} />
           </div>
         </div>
