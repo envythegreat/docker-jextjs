@@ -11,11 +11,21 @@ const Product:FC = () => {
   const router = useRouter()
   let data = router.query.Product
   data = JSON.stringify(data)
-  const myP = JSON.parse(JSON.parse(data))
+  const [myP, setMyp] = useState(Object)
+  const mydata = async (data: any) => {
+     setMyp(await JSON.parse(JSON.parse(data)))
+  }
+  useEffect(() => {
+    
+    mydata(data)
+  },[])
+  // const myP = JSON.parse(JSON.parse(data))
   const [quantity, setQuantity] = useState(1);
   const addOne = () => setQuantity(quantity + 1);
   const minusOne = () => setQuantity(quantity - 1);
   const rate = useAppSelector(state => state.rate.singleRate)
+
+  
   return(
     <>
         <section className={`${styles.section} ${styles.product_detail}`}>
