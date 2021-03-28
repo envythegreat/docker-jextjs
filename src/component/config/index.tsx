@@ -1,3 +1,5 @@
+
+
 export {
   useAppDispatch,
   useAppSelector
@@ -5,21 +7,31 @@ export {
 
 export {Api} from './api';
 
+
 export {
-  addProducts,
-  singleProduct,
-  store,
+  productSlice,
   getTotalAmount,
   addToTotal,
-  removeFromTotal
-} from './store'
+  removeFromTotal,
+  addProducts,
+  singleProduct,
+} from './productReducer';
 
 export {
   SetNewItem,
   getCookies,
   deleteProduct,
   checkifCookiesExist,
-  updateSingleProduct
-} from './cookies'
+  updateSingleProduct,
 
-export type {myProduct} from './type'
+  handleCurneccy,
+  getCurrency,
+  checkifCurrency
+} from './cookies';
+
+export {
+  rateSlice,
+  setRate,
+} from './rateReducer';
+
+export type {myProduct} from './type';

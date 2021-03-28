@@ -1,8 +1,8 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { Trash2 } from 'react-feather';
 import { QuantityButton } from '.';
 import styles from '../../styles/Home.module.scss'
-import { deleteProduct, myProduct, removeFromTotal, useAppDispatch } from '../config';
+import { deleteProduct,myProduct, removeFromTotal, useAppDispatch, useAppSelector } from '../config';
 
 
 interface ProductProps{
@@ -15,6 +15,8 @@ const CartProduct:FC<ProductProps> = ({product}) => {
   
   const [displ, setDispl] = useState(false)
   const [price, setPrice] = useState(product.Quantity * product.price);
+
+  const rate = useAppSelector(state => state.rate.singleRate)
 
   const addUnit = () => setPrice(price + product.price);
   const removeUnit = () => setPrice(price - product.price);
@@ -43,7 +45,7 @@ const CartProduct:FC<ProductProps> = ({product}) => {
           addUnit={addUnit}
           removeUnit={removeUnit}
         />
-        <div className={styles.total_price}>{price.toFixed(2)}</div>
+        <div className={styles.total_price}>{(price * rate['rate']).toFixed(2)} {rate['sign']}</div>
       </div>
   );
 }

@@ -6,6 +6,12 @@ const reset = (myCookies: Array<myProduct>) => {
   Cookies.set('cartItem', JSON.stringify(myCookies), {path: '/',  expires: 3600})
 }
 
+// export const rateCookies = (data: object) => {
+//   Cookies.set('rates', JSON.stringify(data));
+// }
+// export const getRates = () => {
+//   return JSON.parse(Cookies.get('rates'));
+// }
 
 export const checkifCookiesExist = () => {
   const checkifExist = document.cookie.indexOf('cartItem') != -1 ?  true :  false;
@@ -13,6 +19,19 @@ export const checkifCookiesExist = () => {
     let data = [];
     Cookies.set('cartItem', JSON.stringify(data), {path: '/',  expires: 3600})
   }
+}
+
+export const handleCurneccy = (rate: number, sign: string) => {
+  Cookies.set('currency', JSON.stringify({rate, sign}))
+}
+export const checkifCurrency = () => {
+  const checkifExist = document.cookie.indexOf('currency') != -1 ?  true :  false;
+  if(!checkifExist){
+    Cookies.set('currency', JSON.stringify({rate: 1, sign: '$'}))
+  }
+}
+export const getCurrency = () => {
+  return JSON.parse(Cookies.get('currency'))
 }
 
 export const updateSingleProduct = (id: number, str: string) => {

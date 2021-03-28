@@ -27,7 +27,7 @@ const QuantityButton:FC<ButtonProps> = ({quantity, price, id, addUnit, removeUni
   };
   return (
     <div className={styles.quantity}>
-      <button className={styles.minus_btn} type="button" name="button" onClick={MinusQan}>
+      <button className={styles.minus_btn} type="button" name="button" onClick={MinusQan} disabled={myQuantity == 0 ? true : false}>
         <img src="./images/minus.svg" alt="" />
       </button>
       <input type="text" name="name" value={myQuantity} readOnly />

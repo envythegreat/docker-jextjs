@@ -25,6 +25,7 @@ const AddCartButton:FC<PropsCart> = ({product:{id,image,title,price, Quantity}})
             setText('Added')
           }
         }
+        disabled={buttonText === 'Added' ? true : false}
       >{buttonText}</button>
     </>
   )

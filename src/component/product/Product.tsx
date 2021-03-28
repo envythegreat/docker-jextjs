@@ -1,19 +1,19 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import styles from '../../styles/Home.module.scss'
 import Link from 'next/link';
-import { useAppDispatch, singleProduct, myProduct } from '../config/';
+import { useAppDispatch, singleProduct, myProduct, useAppSelector, getCurrency } from '../config/';
 import {AddCartButton} from '../cart';
 
 interface PropsProduct {
   product : myProduct
 }
-{/* <Link href={{ pathname: '/Product', query: { id: productID} }}>View Now</Link> */}
 
 const Product:FC<PropsProduct> = ({product}) => {
   const dispatch = useAppDispatch();
   const limitString =  (length: number, str: string) => {
     return str.length > length ? str.substring(0, length) + ".." : str;
   }
+  const rate = useAppSelector(state => state.rate.singleRate)
   return(
     <>
       <div className={styles.card}>
@@ -23,12 +23,14 @@ const Product:FC<PropsProduct> = ({product}) => {
             <div className={styles.details}>
               <span>{limitString(20, product.title)}</span>
             </div>
-            <div className={styles.price}>{product.price}</div>
+            <div className={styles.price}>{(product.price * rate['rate']).toFixed(2)} {rate['sign']}</div>
           </div>
           <div className={styles.buttons}>
-            <button onClick={() => dispatch(singleProduct(product.id))}>
-                <Link href="/Product">View More</Link>
-            </button>
+            <Link href="/Product">
+              <button onClick={() => dispatch(singleProduct(product.id))}>
+                View More
+              </button>
+            </Link>
             <AddCartButton product={product} />
           </div>
         </div>

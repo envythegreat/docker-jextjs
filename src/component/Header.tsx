@@ -19,12 +19,9 @@ function Header() {
             <ul className={styles.nav__list}>
               <li className={styles.nav__item}><Link href="/"><a className={styles.nav__link} onClick={closeMenu}>Home</a></Link></li>
               <li className={styles.nav__item}><Link href="/Products"><a className={styles.nav__link} onClick={closeMenu}>Products</a></Link></li>
-              {/* <li className={styles.nav__item}><Link href="/Product"><a className={styles.nav__link} onClick={closeMenu}>Product</a></Link></li> */}
-              {/* <li className={styles.nav__item}><Link href="/Product"><a className={styles.nav__link} onClick={closeMenu}>Cart</a></Link></li> */}
             </ul>
           </div>
           <div style={{display: 'flex'}}>
-            {/* <Link href="/Cart"><ShoppingCart className={styles.nav__cart}/></Link> */}
               <div className={styles.cart__nav}>
                 <div className={styles.icon}>
                   <Link href="/Cart"><ShoppingCart/></Link>

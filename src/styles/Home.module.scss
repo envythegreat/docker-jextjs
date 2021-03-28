@@ -718,6 +718,50 @@ $zfixed: 100;
   }
   
 }
+.rate__Popup{
+  width: 50px;
+  height: 50px;
+  z-index: 99999999;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color:$darkcolor;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color:$whitecolor;
+  border: 1px solid $graycolor;
+}
+.currency_signs{
+  border: 1px solid $graycolor;
+  width: 40px;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: none;
+  text-align: center;
+  z-index: 999999999;
+  background-color: $darkcolor;
+  color: $whitecolor;
+  transition: .5s ease-in;
+  button{
+    border: none;
+    outline: none;
+    background-color: $darkcolor;
+    color: $whitecolor;
+    padding: .5rem 0;
+    width: 100%;
+    border-bottom: 1px solid snow;
+    cursor: pointer;
+    &:hover{
+      background-color: $graycolor;
+      color: $darkcolor;
+    }
+  }
+}
 // Media Query
 @media screen and (min-width: 768px){
   .section__all{

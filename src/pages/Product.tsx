@@ -1,13 +1,19 @@
-import React,{FC, useState} from 'react';
+import React,{FC, useEffect, useState} from 'react';
 import {AddCartButton} from '../component/cart/';
-import { useAppSelector } from '../component/config/';
+import {useAppSelector } from '../component/config/';
 import styles from '../styles/Home.module.scss';
 
 const Product:FC = () => {
+
+
   const product = useAppSelector(state => state.products.product);
+  
+
   const [quantity, setQuantity] = useState(1);
   const addOne = () => setQuantity(quantity + 1);
   const minusOne = () => setQuantity(quantity - 1);
+  const rate = useAppSelector(state => state.rate.singleRate)
+  
   const prodect = {
     id: product.id,
     image:product.image,
@@ -29,7 +35,7 @@ const Product:FC = () => {
               
               <h1> {product.title} </h1>
               
-              <div className={styles.price}> {product.price} </div>
+              <div className={styles.price}> {(product.price * rate['rate']).toFixed(2)} {rate['sign']} </div>
               <div className={styles.quan__area}>
                 <div className={styles.quantity}>
                   <button className={styles.minus_btn} type="button" name="button" onClick={minusOne}>
@@ -50,4 +56,4 @@ const Product:FC = () => {
     </>
   );
 }
-export default Product;;
+export default Product;
