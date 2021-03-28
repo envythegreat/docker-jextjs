@@ -1,11 +1,11 @@
 import Head from 'next/head';
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import styles from '../styles/Home.module.scss';
 import Hero from '../component/Hero';
 import ProductList from '../component/product/ProductList';
 import Link from 'next/link';
 import {GetServerSideProps} from 'next';
-import {addProducts, Api, useAppDispatch} from '../component/config/';
+import {addProducts, Api, checkifCookiesExist, useAppDispatch} from '../component/config/';
 import Cookies from 'js-cookie'
 
 
@@ -17,7 +17,11 @@ interface Props {
 
 const Home:FC<Props> = ({data}) => {
   const dispatch = useAppDispatch();
-  dispatch(addProducts(data));
+  useEffect(() => {
+    dispatch(addProducts(data));
+    checkifCookiesExist();
+  })
+  
   return (
     <div className={styles.container}>
       <Head>

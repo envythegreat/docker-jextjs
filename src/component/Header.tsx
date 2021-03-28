@@ -29,7 +29,6 @@ function Header() {
                 <div className={styles.icon}>
                   <Link href="/Cart"><ShoppingCart/></Link>
                 </div>
-                <div className={styles.item_count}>0</div>
               </div>
             <Menu className={styles.nav__toggle} onClick={handleMenu} />
           </div>

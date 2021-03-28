@@ -1,3 +1,4 @@
 import CartProduct from "./CartProduct";
-import AddCartButton from './addCartButton'
-export {CartProduct, AddCartButton} ;
+import AddCartButton from './addCartButton';
+import QuantityButton from './QuantityButton'
+export {CartProduct, AddCartButton, QuantityButton} ;

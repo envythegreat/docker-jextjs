@@ -1,13 +1,16 @@
 import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { myProduct } from '.';
 
 export interface State {
-  products: Array<any>;
-  product: object;
+  products: Array<myProduct>;
+  product: myProduct;
+  totalAmount: number;
 }
 
 const initialState : State = {
   products: [],
-  product: {}
+  product: null,
+  totalAmount: 0
 }
 
 export const productSlice = createSlice({
@@ -19,6 +22,15 @@ export const productSlice = createSlice({
     },
     singleProduct: (state, action: PayloadAction<{}>) => {
       state.product = state.products.find(product => product.id === action.payload)
+    },
+    getTotalAmount: (state, action: PayloadAction<number>) => {
+      state.totalAmount = action.payload;
+    },
+    addToTotal: (state, action:PayloadAction<number>) => {
+      state.totalAmount += action.payload
+    },
+    removeFromTotal: (state, action:PayloadAction<number>) => {
+      state.totalAmount -= action.payload
     }
   }
 })
@@ -29,6 +41,6 @@ export const store = configureStore({
   }
 })
 
-export const {addProducts, singleProduct} = productSlice.actions
+export const {addProducts, singleProduct, getTotalAmount, addToTotal, removeFromTotal} = productSlice.actions
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch

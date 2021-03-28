@@ -11,6 +11,9 @@ interface PropsProduct {
 
 const Product:FC<PropsProduct> = ({product}) => {
   const dispatch = useAppDispatch();
+  const limitString =  (length: number, str: string) => {
+    return str.length > length ? str.substring(0, length) + ".." : str;
+  }
   return(
     <>
       <div className={styles.card}>
@@ -18,7 +21,7 @@ const Product:FC<PropsProduct> = ({product}) => {
         <div className={styles.content}>
           <div className={styles.row}>
             <div className={styles.details}>
-              <span>{product.title}</span>
+              <span>{limitString(20, product.title)}</span>
             </div>
             <div className={styles.price}>{product.price}</div>
           </div>

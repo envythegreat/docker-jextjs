@@ -1,7 +1,7 @@
 import React, {FC} from 'react'
 import styles from '../../styles/Home.module.scss'
 import Product from './Product';
-import { useAppSelector } from '../config';
+import { myProduct, useAppSelector } from '../config';
 
 interface props{
   nextpage?: number;
@@ -9,12 +9,9 @@ interface props{
 }
 
 const ProductList:FC <props>= ({nextpage, curentpage}) => {
-  const limitString =  (length: number, str: string) => {
-    return str.length > length ? str.substring(0, length) + ".." : str;
-  }
   const products = useAppSelector(state => state.products.products.slice(curentpage, nextpage));
-  const listProducts = products.map( product => {
-    return <Product product={product} />
+  const listProducts = products.map( (product:myProduct) => {
+    return <Product product={product} key={product.id * Math.random() }/>
   })
   return(
     <>

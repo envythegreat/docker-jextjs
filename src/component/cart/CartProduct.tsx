@@ -1,35 +1,49 @@
-import * as React from 'react'
+import React, { FC, useState } from 'react'
 import { Trash2 } from 'react-feather';
+import { QuantityButton } from '.';
 import styles from '../../styles/Home.module.scss'
-import { deleteProduct, myProduct } from '../config';
+import { deleteProduct, myProduct, removeFromTotal, useAppDispatch } from '../config';
 
 
 interface ProductProps{
   product: myProduct;
+  // updateTotal:(price: number) => void
 }
 
-const CartProduct:React.FC<ProductProps> = ({product}) => {
+const CartProduct:FC<ProductProps> = ({product}) => {
 
-  const price = product.Quantity * product.price;;
+  
+  const [displ, setDispl] = useState(false)
+  const [price, setPrice] = useState(product.Quantity * product.price);
+
+  const addUnit = () => setPrice(price + product.price);
+  const removeUnit = () => setPrice(price - product.price);
+
+  const dispatch = useAppDispatch()
+  const multitask = () => {
+    deleteProduct(product.id);
+    setDispl(true);
+    dispatch(removeFromTotal(price));
+  }
+
   return(
-      <div className={styles.item}>
+      <div className={styles.item} style={displ ? {display: 'none'} : null}>
         <div className={styles.buttons}>
-          <span className={styles.delete_btn} onClick={() => {deleteProduct(1)}}><Trash2 color="#E55947" /></span>
+          <span className={styles.delete_btn}>
+            <Trash2 color="#E55947" onClick={multitask} /></span>
         </div>
-          <img src={product.image} alt="" className={styles.product__image} />
+        <img src={product.image} alt="" className={styles.product__image} />
         <div className={styles.description}>
           <span>{product.title}</span>
         </div>
-        <div className={styles.quantity}>
-          <button className={styles.minus_btn} type="button" name="button">
-            <img src="./images/minus.svg" alt="" />
-          </button>
-          <input type="text" name="name" value={product.Quantity} onChange={() => alert('pp')} />
-          <button className={styles.plus_btn} type="button" name="button">
-            <img src="./images/plus.svg" alt="" />
-          </button>
-        </div>
-        <div className={styles.total_price}>{price}</div>
+        <QuantityButton 
+          quantity={product.Quantity} 
+          price={product.price}
+          id={product.id}
+          addUnit={addUnit}
+          removeUnit={removeUnit}
+        />
+        <div className={styles.total_price}>{price.toFixed(2)}</div>
       </div>
   );
 }
