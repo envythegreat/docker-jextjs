@@ -1,5 +1,5 @@
 import { configureStore} from '@reduxjs/toolkit'
-import { rateSlice, productSlice } from '.';
+import { rateSlice, productSlice } from '..';
 
 
 

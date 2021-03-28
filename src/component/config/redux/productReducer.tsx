@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { myProduct } from ".";
+import { myProduct } from "..";
 
 export interface State {
   products: Array<myProduct>;

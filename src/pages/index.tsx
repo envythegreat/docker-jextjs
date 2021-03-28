@@ -6,7 +6,7 @@ import ProductList from '../component/product/ProductList';
 import Link from 'next/link';
 import {GetServerSideProps} from 'next';
 import {addProducts, Api, checkifCookiesExist, checkifCurrency, getCurrency, useAppDispatch} from '../component/config/';
-import { addRates, setRate } from '../component/config/rateReducer';
+import { addRates, setRate } from '../component/config/redux/rateReducer';
 
 
 

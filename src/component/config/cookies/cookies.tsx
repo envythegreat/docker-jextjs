@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import { myProduct } from '.';
+import { myProduct } from '..';
 
 const reset = (myCookies: Array<myProduct>) => {
   Cookies.remove('cartItem');

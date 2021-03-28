@@ -3,7 +3,7 @@
 export {
   useAppDispatch,
   useAppSelector
-} from './hooks';
+} from './redux/hooks';
 
 export {Api} from './api';
 
@@ -15,7 +15,7 @@ export {
   removeFromTotal,
   addProducts,
   singleProduct,
-} from './productReducer';
+} from './redux/productReducer';
 
 export {
   SetNewItem,
@@ -27,11 +27,11 @@ export {
   handleCurneccy,
   getCurrency,
   checkifCurrency
-} from './cookies';
+} from './cookies/cookies';
 
 export {
   rateSlice,
   setRate,
-} from './rateReducer';
+} from './redux/rateReducer';
 
 export type {myProduct} from './type';

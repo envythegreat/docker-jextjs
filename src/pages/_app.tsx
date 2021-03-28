@@ -2,7 +2,7 @@ import '../styles/globals.css';
 import React, {FC, useState} from 'react';
 import {AppProps} from 'next/app';
 import {Header, Footer} from '../component/';
-import { store } from '../component/config/store';
+import { store } from '../component/config/redux/store';
 import { Provider } from 'react-redux';
 import {Rate} from '../component/'
 

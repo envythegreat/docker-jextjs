@@ -9,7 +9,7 @@ interface PropsProduct {
 }
 
 const Product:FC<PropsProduct> = ({product}) => {
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   const limitString =  (length: number, str: string) => {
     return str.length > length ? str.substring(0, length) + ".." : str;
   }
@@ -27,8 +27,11 @@ const Product:FC<PropsProduct> = ({product}) => {
           </div>
           <div className={styles.buttons}>
             
-              <button onClick={() => dispatch(singleProduct(product.id))}>
-              <Link href="/Product">View More</Link>
+              <button /*onClick={() => dispatch(singleProduct(product.id))}*/>
+              <Link href={{
+                  pathname: '/Product/[Product]',
+                  query: { Product: JSON.stringify(product) },
+                }}>View More</Link>
               </button>
             
             <AddCartButton product={product} />
