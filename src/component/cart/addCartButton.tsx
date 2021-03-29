@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React,{FC, useState} from 'react';;
 import styles from '../../styles/Home.module.scss';
 import { myProduct, SetNewItem } from '../config';
@@ -21,12 +22,15 @@ const AddCartButton:FC<PropsCart> = ({product:{id,image,title,price, Quantity}})
         className={styles.addcart__btn}
         onClick={() => 
           {
-            SetNewItem(cartProduct)
-            setText('Added')
+            buttonText === 'Go To Cart'
+            ? null
+            : SetNewItem(cartProduct)
+              setText('Go To Cart')
           }
         }
-        disabled={buttonText === 'Added' ? true : false}
-      >{buttonText}</button>
+      >{buttonText === 'Go To Cart'
+          ?(<Link href="/Cart" >{buttonText}</Link> )
+          : 'Add To Cart'}</button>
     </>
   )
 }

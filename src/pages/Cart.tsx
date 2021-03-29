@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useState} from 'react';
-import { getCookies, myProduct, useAppDispatch, useAppSelector } from '../component/config';
+import { getCookies, getCurrency, myProduct, setRate, useAppDispatch, useAppSelector } from '../component/config';
 import styles from '../styles/Home.module.scss';
 import {CartProduct} from '../component/cart';
 import { getTotalAmount } from '../component/config';
@@ -10,6 +10,7 @@ const Cart:FC = () => {
   const rate = useAppSelector(state => state.rate.singleRate)
   const dispatch = useAppDispatch();
   useEffect(() => {
+    dispatch(setRate(getCurrency()))
     let datas = getCookies();
     let total = 0;
     setData(datas.map( (item:myProduct)=> {
@@ -18,7 +19,8 @@ const Cart:FC = () => {
     }))
     dispatch(getTotalAmount(total))
   }, [])
-  const redux_Total =  useAppSelector(state => state.products.totalAmount) 
+  const redux_Total =  useAppSelector(state => state.products.totalAmount)
+  console.log(redux_Total, rate['rate'])
   return (
     <>
     <div className={styles.maons}>
