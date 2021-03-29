@@ -5,8 +5,15 @@ import Hero from '../component/Hero';
 import ProductList from '../component/product/ProductList';
 import Link from 'next/link';
 import {GetServerSideProps} from 'next';
-import {addProducts, Api, checkifCookiesExist, checkifCurrency, getCurrency, useAppDispatch} from '../component/config/';
-import { addRates, setRate } from '../component/config/redux/rateReducer';
+import {addProducts,
+  Api,
+  checkifCookiesExist,
+  checkifCurrency,
+  getCurrency,
+  rateCookies,
+  useAppDispatch
+} from '../component/config/';
+import { addRates, setRate } from '../component/config/';
 
 
 
@@ -25,7 +32,7 @@ const Home:FC<Props> = ({data, rate}) => {
     checkifCookiesExist();
     // check if rate cookies exist
     checkifCurrency();
-
+    rateCookies(rate)
     dispatch(addRates(rate));
     // to avoid infinite render in useEffect i had to use state when i update component and we only get data from cookies once
     dispatch(setRate(getCurrency()))

@@ -1,12 +1,22 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import styles from '../styles/Home.module.scss';
-import { handleCurneccy, setRate, useAppDispatch, useAppSelector } from './config';
+import {
+  addRates,
+  getRates,
+  handleCurneccy,
+  setRate,
+  useAppDispatch,
+  useAppSelector
+} from './config';
 
 
 
 
  
 const Rate:FC= () => {
+  useEffect(() =>{
+    dispatch(addRates(getRates()))
+  },[])
   const rates = useAppSelector(state => state.rate.rates);
   const rate = useAppSelector(state => state.rate.singleRate)
   const [poPup, setPopup] = useState(false);

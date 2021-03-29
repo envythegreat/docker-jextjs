@@ -15,6 +15,7 @@ export {
   removeFromTotal,
   addProducts,
   singleProduct,
+  
 } from './redux/productReducer';
 
 export {
@@ -23,7 +24,8 @@ export {
   deleteProduct,
   checkifCookiesExist,
   updateSingleProduct,
-
+  rateCookies,
+  getRates,
   handleCurneccy,
   getCurrency,
   checkifCurrency
@@ -32,6 +34,7 @@ export {
 export {
   rateSlice,
   setRate,
+  addRates
 } from './redux/rateReducer';
 
 export type {myProduct} from './type';

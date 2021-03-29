@@ -2,7 +2,13 @@ import React, { FC, useEffect, useState } from 'react'
 import { Trash2 } from 'react-feather';
 import { QuantityButton } from '.';
 import styles from '../../styles/Home.module.scss'
-import { deleteProduct,myProduct, removeFromTotal, useAppDispatch, useAppSelector } from '../config';
+import {
+  deleteProduct,
+  myProduct,
+  removeFromTotal,
+  useAppDispatch,
+  useAppSelector
+} from '../config';
 
 
 interface ProductProps{
