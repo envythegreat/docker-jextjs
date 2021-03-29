@@ -14,13 +14,14 @@ import {
 
  
 const Rate:FC= () => {
-  useEffect(() =>{
-    dispatch(addRates(getRates()))
-  },[])
+  const dispatch = useAppDispatch();
   const rates = useAppSelector(state => state.rate.rates);
   const rate = useAppSelector(state => state.rate.singleRate)
+  if(!rates){
+    dispatch(addRates(getRates()))
+  }
   const [poPup, setPopup] = useState(false);
-  const dispatch = useAppDispatch();
+  
   const getCurrency = (str: string) => {
     setPopup(false)
     switch (str) {
@@ -43,7 +44,6 @@ const Rate:FC= () => {
         break;
     }
   }
-
   return (
     <>
       <div className={styles.rate__Popup} 
@@ -61,6 +61,7 @@ const Rate:FC= () => {
       </div>
     </>
   );
+  
 }
 
 export default Rate;

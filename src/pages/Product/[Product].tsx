@@ -16,7 +16,6 @@ const Product:FC = () => {
      setMyp(await JSON.parse(JSON.parse(data)))
   }
   useEffect(() => {
-    
     mydata(data)
   },[])
   // const myP = JSON.parse(JSON.parse(data))

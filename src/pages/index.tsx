@@ -27,14 +27,14 @@ const Home:FC<Props> = ({data, rate}) => {
 
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(addProducts(data));
-    // check if products cookies exist
-    checkifCookiesExist();
     // check if rate cookies exist
-    checkifCurrency();
     rateCookies(rate)
-    dispatch(addRates(rate));
+    checkifCookiesExist();
+    checkifCurrency();
     // to avoid infinite render in useEffect i had to use state when i update component and we only get data from cookies once
+    // check if products cookies exist
+    dispatch(addProducts(data));
+    dispatch(addRates(rate));
     dispatch(setRate(getCurrency()))
   })
   
