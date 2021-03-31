@@ -1,5 +1,6 @@
 import '../styles/globals.css';
-import React, {FC, useState} from 'react';
+import styles from '../styles/Home.module.scss'
+import React, {FC} from 'react';
 import {AppProps} from 'next/app';
 import {Header, Footer} from '../component/';
 import { store } from '../component/config/redux/store';
@@ -10,10 +11,12 @@ const MyApp: FC<AppProps> = ({Component, pageProps}) => {
   return (
     <>
       <Provider store={store}>
-        <Header />
-          <Rate />
-          <Component {...pageProps} />
-        <Footer />
+        <div className={styles.contain}>
+          <Header />
+            <Rate />
+            <Component {...pageProps} />
+          <Footer />
+        </div>
       </Provider>
     </>
   );

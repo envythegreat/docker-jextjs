@@ -1,9 +1,9 @@
 import React, {FC, useEffect, useRef, useState} from 'react';
 import styles from '../../styles/Home.module.scss'
 import Link from 'next/link';
-import { useAppDispatch, singleProduct, myProduct, useAppSelector, getCurrency } from '../config/';
+import { myProduct, useAppSelector, } from '../config/';
 import {AddCartButton} from '../cart';
-
+import { useRouter } from 'next/router'
 interface PropsProduct {
   product : myProduct
 }
@@ -14,6 +14,7 @@ const Product:FC<PropsProduct> = ({product}) => {
     return str.length > length ? str.substring(0, length) + ".." : str;
   }
   const rate = useAppSelector(state => state.rate.singleRate)
+  const router = useRouter()
   return(
     <>
       <div className={styles.card}>
@@ -27,11 +28,16 @@ const Product:FC<PropsProduct> = ({product}) => {
           </div>
           <div className={styles.buttons}>
             
-              <button /*onClick={() => dispatch(singleProduct(product.id))}*/>
-              <Link href={{
+              <button onClick={() => {
+                router.push({
                   pathname: '/Product/[Product]',
                   query: { Product: JSON.stringify(product) },
-                }}>View More</Link>
+                })
+              }} >
+              {/* <Link href={{
+                  pathname: '/Product/[Product]',
+                  query: { Product: JSON.stringify(product) },
+                }}></Link> */}View More
               </button>
             
             <AddCartButton product={product} />

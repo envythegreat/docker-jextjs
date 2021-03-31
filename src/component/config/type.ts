@@ -6,3 +6,8 @@ export type myProduct = {
   title: string;
   description?: string;
 }
+
+export type Rate = {
+  rate : number
+  sign: string;
+}

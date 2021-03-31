@@ -1,30 +1,36 @@
 
 import React,{FC, useEffect, useState} from 'react';
 import {AddCartButton} from '../../component/cart';
-import {useAppSelector } from '../../component/config';
+import {addRates, getCurrency, getRates, myProduct, setRate, useAppSelector } from '../../component/config';
 import styles from '../../styles/Home.module.scss';
-import { useRouter } from 'next/router'
+import { GetServerSideProps } from 'next';
+import { useDispatch } from 'react-redux';
 
+interface Props {
+  product: myProduct
+}
 
-const Product:FC = () => {
+const Product:FC<Props> = ({product}) => {
 
-  const router = useRouter()
-  let data = router.query.Product
-  data = JSON.stringify(data)
-  const [myP, setMyp] = useState(Object)
-  const mydata = async (data: any) => {
-     setMyp(await JSON.parse(JSON.parse(data)))
-  }
+  const dispatch = useDispatch()
   useEffect(() => {
-    mydata(data)
-  },[])
-  // const myP = JSON.parse(JSON.parse(data))
+    dispatch(setRate(getCurrency()))
+    dispatch(addRates(getRates()))
+  })
+
   const [quantity, setQuantity] = useState(1);
   const addOne = () => setQuantity(quantity + 1);
   const minusOne = () => setQuantity(quantity - 1);
   const rate = useAppSelector(state => state.rate.singleRate)
 
-  
+    const myPro = {
+      id: product.id,
+      image: product.image,
+      title: product.title,
+      description : product.description,
+      price: product.price,
+      Quantity : quantity
+    }
   return(
     <>
         <section className={`${styles.section} ${styles.product_detail}`}>
@@ -32,14 +38,14 @@ const Product:FC = () => {
             <div className={styles.left}>
               <div className={styles.main}>
                 
-                <img src={myP.image} alt="" />
+                <img src={product.image} alt="" />
               </div>
             </div>
             <div className={styles.right}>
               
-              <h1> {myP.title} </h1>
+              <h1> {product.title} </h1>
               
-              <div className={styles.price}> {(myP.price * rate['rate']).toFixed(2)} {rate['sign']} </div>
+              <div className={styles.price}> {(product.price * rate['rate']).toFixed(2)} {rate['sign']} </div>
               <div className={styles.quan__area}>
                 <div className={styles.quantity}>
                   <button className={styles.minus_btn} type="button" name="button" onClick={minusOne}>
@@ -50,15 +56,26 @@ const Product:FC = () => {
                     <img src="../images/plus.svg" alt="" />
                   </button>
                 </div>
-                <AddCartButton product={myP} />
+                <AddCartButton product={myPro} />
               </div>
               <h3>Product Description</h3>
-              <p> {myP.description} </p>
+              <p> {product.description} </p>
             </div>
           </div>
         </section>
     </>
   );
+}
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  let data = query.Product
+  data = JSON.stringify(data)
+  console.log(data)
+  return {
+    props :{
+      product: JSON.parse(JSON.parse(data))
+    }
+  }
 }
 export default Product;
 

@@ -37,4 +37,4 @@ export {
   addRates
 } from './redux/rateReducer';
 
-export type {myProduct} from './type';
+export type {myProduct, Rate} from './type';

@@ -53,6 +53,7 @@ $zfixed: 100;
   left: 0;
   z-index: $zfixed;
   background-color: $graycolor;
+  flex-shrink: 0;
   .nav{
     height: 4rem;
     display: flex;
@@ -140,7 +141,7 @@ $zfixed: 100;
     height: 93.6vh;
     .home__data{
       padding: 1.5rem;
-      padding-top: 6rem;
+      padding-top: 3rem;
       color: $firstcolor;
       .home__title{
         align-self: center;
@@ -222,11 +223,11 @@ $zfixed: 100;
   .card{
     position: relative;
     // background: $darkcolor;
-    border-radius: 3px;
+    border-radius: 10px;
     width: 100%;
     height: 300px;
     overflow: hidden;
-    box-shadow: 4px 4px 10px 0px rgba(0,0,0,0.15);
+    box-shadow: 4px 4px 10px 0px rgba(29, 28, 28, 0.15);
     margin: auto;
     .content{
       position: absolute;
@@ -287,11 +288,12 @@ $zfixed: 100;
       justify-content: space-between;
     }
     img{
-      width: 100%;
-      height: 100%;
       border-radius: 3px;
       transition: all 0.3s ease;
       object-fit: contain;
+      width: 100%;
+      height: 100%;
+      padding: $mb4;
     }
     &:hover{
       img{
@@ -416,10 +418,12 @@ $zfixed: 100;
         margin: 6px 0;
       }
       .product__image{   
-        width: 60%;
+        width: 50%;
+        height: 50%;
         margin: auto;
-        background-color: $darkcolor;
+        background-color: snow;
         border-radius: 20px;
+        object-fit: contain;
       }
       .description{
         span{
@@ -443,6 +447,11 @@ $zfixed: 100;
       justify-content: space-between;
     }
   }
+}
+.contain{
+  display: flex;
+	flex-direction: column;
+	height: 100vh;
 }
 .quantity{
   display: flex;
@@ -475,6 +484,7 @@ $zfixed: 100;
 .footer{
   background-color: $darkcolor;
   color: $whitecolor;
+  flex-shrink: 0;
   .footer__container{
     row-gap: 1.5rem;
     margin-bottom: $mb4;
