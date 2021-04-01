@@ -1,18 +1,22 @@
 import Cookies from 'js-cookie';
 import { myProduct } from '..';
 
+// remove old cookies and add new ones
 const reset = (myCookies: Array<myProduct>) => {
   Cookies.remove('cartItem');
   Cookies.set('cartItem', JSON.stringify(myCookies), {path: '/',  expires: 3600})
 }
 
+// store all currency rates are comming from the api
 export const rateCookies = (data: object) => {
   Cookies.set('rates', JSON.stringify(data));
 }
+// get currency rates cookies
 export const getRates = () => {
   return JSON.parse(Cookies.get('rates'));
 }
 
+// check if the product cookies exist if not create new one with new array
 export const checkifCookiesExist = () => {
   const checkifExist = document.cookie.indexOf('cartItem') != -1 ?  true :  false;
   if(!checkifExist){
@@ -21,19 +25,23 @@ export const checkifCookiesExist = () => {
   }
 }
 
+// store the latest cuurency used 
 export const handleCurneccy = (rate: number, sign: string) => {
   Cookies.set('currency', JSON.stringify({rate, sign}))
 }
+//check if currency cookies exist if not creat new one with Dollar as a default currency
 export const checkifCurrency = () => {
   const checkifExist = document.cookie.indexOf('currency') != -1 ?  true :  false;
   if(!checkifExist){
     Cookies.set('currency', JSON.stringify({rate: 1, sign: '$'}))
   }
 }
+// get currency product
 export const getCurrency = () => {
   return JSON.parse(Cookies.get('currency'))
 }
 
+// update the quantity of a product inside a cookies array
 export const updateSingleProduct = (id: number, str: string) => {
   let myCookies =  JSON.parse(Cookies.get('cartItem'));
   let isProductExist = myCookies.filter((cookie: myProduct ) => cookie.id === id)
@@ -45,6 +53,7 @@ export const updateSingleProduct = (id: number, str: string) => {
   reset(myCookies) 
 }
 
+// add a new product the cookies
 export const SetNewItem = (product: myProduct) => {
   let myCookies =  JSON.parse(Cookies.get('cartItem'));
   let ifProductExist = myCookies.filter((cookie: myProduct ) => cookie.id === product.id)
@@ -61,7 +70,7 @@ export const SetNewItem = (product: myProduct) => {
 export const getCookies = () => {
    return JSON.parse(Cookies.get('cartItem'));
 }
-
+// delete a product from the cookies
 export const deleteProduct = (id: number) => {
   let myCookies =  JSON.parse(Cookies.get('cartItem'));
   myCookies = myCookies.filter((Product:myProduct) => Product.id !== id )

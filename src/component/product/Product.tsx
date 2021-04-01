@@ -34,10 +34,7 @@ const Product:FC<PropsProduct> = ({product}) => {
                   query: { Product: JSON.stringify(product) },
                 })
               }} >
-              {/* <Link href={{
-                  pathname: '/Product/[Product]',
-                  query: { Product: JSON.stringify(product) },
-                }}></Link> */}View More
+                View More
               </button>
             
             <AddCartButton product={product} />

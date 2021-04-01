@@ -2,9 +2,6 @@ import { configureStore} from '@reduxjs/toolkit'
 import { rateSlice, productSlice } from '..';
 
 
-
-
-
 export const store = configureStore({
   reducer: {
     products: productSlice.reducer,

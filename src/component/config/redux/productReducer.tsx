@@ -13,8 +13,6 @@ const initialState : State = {
   totalAmount: 0
 }
 
-
-
 export const productSlice = createSlice({
   name: 'product',
   initialState,
@@ -37,4 +35,10 @@ export const productSlice = createSlice({
   }
 })
 
-export const {addProducts, singleProduct, getTotalAmount, addToTotal, removeFromTotal} = productSlice.actions
+export const {
+  addProducts,
+  singleProduct,
+  getTotalAmount,
+  addToTotal,
+  removeFromTotal
+} = productSlice.actions

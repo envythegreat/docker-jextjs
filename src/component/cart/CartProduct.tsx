@@ -13,7 +13,6 @@ import {
 
 interface ProductProps{
   product: myProduct;
-  // updateTotal:(price: number) => void
 }
 
 const CartProduct:FC<ProductProps> = ({product}) => {

@@ -24,4 +24,7 @@ export const rateSlice = createSlice({
   }
 });
 
-export const {setRate, addRates} = rateSlice.actions;
+export const {
+  setRate,
+  addRates
+} = rateSlice.actions;

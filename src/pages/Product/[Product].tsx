@@ -78,18 +78,3 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   }
 }
 export default Product;
-
-
-
-
-// import { useRouter } from 'next/router'
-
-// const Product = () => {
-//   const router = useRouter()
-//   let data = router.query.Product
-//   data = JSON.stringify(data)
-//   console.log(JSON.parse(JSON.parse(data)))
-//   return <p>Post: a</p>
-// }
-
-// export default Product
