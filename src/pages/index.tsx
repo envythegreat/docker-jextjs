@@ -58,7 +58,7 @@ const Home:FC<Props> = ({data, rate}) => {
 
 export const getServerSideProps: GetServerSideProps = async context => {
   const URL = 'https://fakestoreapi.com/products';
-  const rateUrl = 'http://api.exchangeratesapi.io/v1/latest?access_key=b4af2163d55b3b9b9c13025bb1641b69';
+  const rateUrl = `http://api.exchangeratesapi.io/v1/latest?access_key=b4af2163d55b3b9b9c13025bb1641b69`;
   const resRate = Api(rateUrl)
   const res = Api(URL);
   return{ props: {
