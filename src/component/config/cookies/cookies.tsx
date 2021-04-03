@@ -65,10 +65,6 @@ export const SetNewItem = (product: myProduct) => {
   }
   reset(myCookies) 
 }
-
-export const getCookies = () => {
-   return JSON.parse(Cookies.get('cartItem'));
-}
 // delete a product from the cookies
 export const deleteProduct = (id: number) => {
   let myCookies =  JSON.parse(Cookies.get('cartItem'));

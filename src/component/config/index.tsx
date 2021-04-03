@@ -18,7 +18,6 @@ export {
 
 export {
   SetNewItem,
-  getCookies,
   deleteProduct,
   checkifCookiesExist,
   updateSingleProduct,

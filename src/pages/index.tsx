@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.scss';
 import Hero from '../component/Hero';
 import ProductList from '../component/product/ProductList';
 import Link from 'next/link';
-import {GetStaticProps} from 'next';
+import {GetServerSideProps} from 'next';
 import {
   addProducts,
   Api,
@@ -60,7 +60,7 @@ const Home:FC<Props> = ({data, rate}) => {
   );
 }
 
-export const getStaticProps: GetStaticProps = async context => {
+export const getServerSideProps: GetServerSideProps = async context => {
   const resRate = Api('Rates')
   const res = Api('Product');
   return{ props: {
