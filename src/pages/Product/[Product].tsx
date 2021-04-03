@@ -1,10 +1,9 @@
 
 import React,{FC, useEffect, useState} from 'react';
 import {AddCartButton} from '../../component/cart';
-import {addRates, getCurrency, getRates, myProduct, setRate, useAppSelector } from '../../component/config';
+import {addRates, getCurrency, getRates, myProduct, setRate, useAppDispatch, useAppSelector } from '../../component/config';
 import styles from '../../styles/Home.module.scss';
 import { GetServerSideProps } from 'next';
-import { useDispatch } from 'react-redux';
 
 interface Props {
   product: myProduct
@@ -12,7 +11,7 @@ interface Props {
 
 const Product:FC<Props> = ({product}) => {
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(setRate(getCurrency()))
     dispatch(addRates(getRates()))
@@ -70,7 +69,6 @@ const Product:FC<Props> = ({product}) => {
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   let data = query.Product
   data = JSON.stringify(data)
-  console.log(data)
   return {
     props :{
       product: JSON.parse(JSON.parse(data))

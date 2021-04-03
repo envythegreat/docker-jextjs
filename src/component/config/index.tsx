@@ -26,7 +26,7 @@ export {
   getRates,
   handleCurneccy,
   getCurrency,
-  checkifCurrency
+  getAllCookies
 } from './cookies/cookies';
 
 export {

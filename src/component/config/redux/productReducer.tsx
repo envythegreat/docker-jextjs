@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { myProduct } from "..";
 
 export interface State {
-  products: Array<myProduct>;
+  products: myProduct[];
   product: myProduct;
   totalAmount: number;
 }
@@ -17,7 +17,7 @@ export const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers:{
-    addProducts: (state, action: PayloadAction<[]>) => {
+    addProducts: (state, action: PayloadAction<myProduct[]>) => {
       state.products = action.payload;
     },
     singleProduct: (state, action: PayloadAction<{}>) => {

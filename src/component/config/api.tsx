@@ -1,5 +1,10 @@
+
 import axios from 'axios'
-// const URL = 'https://fakestoreapi.com/products';
 export async function Api(URL : string){
-  return await axios.get(URL);
+  switch (URL) {
+    case 'Product':
+      return await axios.get(`https://fakestoreapi.com/products`);
+    case 'Rates':
+      return await axios.get(`http://api.exchangeratesapi.io/v1/latest?access_key=b4af2163d55b3b9b9c13025bb1641b69`);
+  }
 }

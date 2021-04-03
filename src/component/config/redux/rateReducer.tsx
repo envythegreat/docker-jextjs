@@ -4,7 +4,7 @@ import { Rate } from "..";
 
 export interface rateState {
   singleRate: Rate;
-  rates: Array<Rate>;
+  rates: Rate[];
 }
 
 const initialState: rateState = {
@@ -18,7 +18,7 @@ export const rateSlice = createSlice({
     setRate: (state, action: PayloadAction<Rate>) => {
       state.singleRate = action.payload
     },
-    addRates: (state, action: PayloadAction<[]>) => {
+    addRates: (state, action: PayloadAction<Rate[]>) => {
       state.rates = action.payload
     }
   }

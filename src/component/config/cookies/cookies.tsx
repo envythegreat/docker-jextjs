@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 import { myProduct } from '..';
-
+import cookie from 'cookie'
 // remove old cookies and add new ones
 const reset = (myCookies: Array<myProduct>) => {
   Cookies.remove('cartItem');
@@ -17,24 +17,23 @@ export const getRates = () => {
 }
 
 // check if the product cookies exist if not create new one with new array
-export const checkifCookiesExist = () => {
-  const checkifExist = document.cookie.indexOf('cartItem') != -1 ?  true :  false;
+export const checkifCookiesExist = (str: string) => {
+  const checkifExist = document.cookie.indexOf(str) != -1 ?  true :  false;
   if(!checkifExist){
-    let data = [];
-    Cookies.set('cartItem', JSON.stringify(data), {path: '/',  expires: 3600})
+    switch(str) {
+      case 'cartItem':
+        Cookies.set('cartItem', JSON.stringify([]), {path: '/',  expires: 60 * 60 * 24 * 7})
+      case 'currency':
+        Cookies.set('currency', JSON.stringify({rate: 1, sign: '$'}), {path: '/',  expires: 60 * 60 * 24 * 7})
+      default:
+        break;
+    }
   }
 }
 
 // store the latest cuurency used 
 export const handleCurneccy = (rate: number, sign: string) => {
   Cookies.set('currency', JSON.stringify({rate, sign}))
-}
-//check if currency cookies exist if not creat new one with Dollar as a default currency
-export const checkifCurrency = () => {
-  const checkifExist = document.cookie.indexOf('currency') != -1 ?  true :  false;
-  if(!checkifExist){
-    Cookies.set('currency', JSON.stringify({rate: 1, sign: '$'}))
-  }
 }
 // get currency product
 export const getCurrency = () => {
@@ -75,4 +74,8 @@ export const deleteProduct = (id: number) => {
   let myCookies =  JSON.parse(Cookies.get('cartItem'));
   myCookies = myCookies.filter((Product:myProduct) => Product.id !== id )
   reset(myCookies)
+}
+
+export const getAllCookies = (req: any) => {
+  return cookie.parse(req ? req.headers.cookie || "" : document.cookie);
 }

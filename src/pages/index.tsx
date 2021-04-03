@@ -4,22 +4,25 @@ import styles from '../styles/Home.module.scss';
 import Hero from '../component/Hero';
 import ProductList from '../component/product/ProductList';
 import Link from 'next/link';
-import {GetServerSideProps} from 'next';
-import {addProducts,
+import {GetStaticProps} from 'next';
+import {
+  addProducts,
   Api,
   checkifCookiesExist,
-  checkifCurrency,
   getCurrency,
   rateCookies,
-  useAppDispatch
+  useAppDispatch,
+  addRates,
+  setRate,
+  myProduct,
+  Rate
 } from '../component/config/';
-import { addRates, setRate } from '../component/config/';
 
 
 
 interface Props {
-  data: [],
-  rate: []
+  data: Array<myProduct>,
+  rate: Array<Rate>
 }
 
 
@@ -29,8 +32,9 @@ const Home:FC<Props> = ({data, rate}) => {
   useEffect(() => {
     // check if rate cookies exist
     rateCookies(rate)
-    checkifCookiesExist();
-    checkifCurrency();
+    checkifCookiesExist('cartItem')
+    checkifCookiesExist('currency')
+    
     // to avoid infinite render in useEffect i had to use state when i update component and we only get data from cookies once
     // check if products cookies exist
     dispatch(addProducts(data));
@@ -56,11 +60,9 @@ const Home:FC<Props> = ({data, rate}) => {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async context => {
-  const URL = 'https://fakestoreapi.com/products';
-  const rateUrl = `http://api.exchangeratesapi.io/v1/latest?access_key=b4af2163d55b3b9b9c13025bb1641b69`;
-  const resRate = Api(rateUrl)
-  const res = Api(URL);
+export const getStaticProps: GetStaticProps = async context => {
+  const resRate = Api('Rates')
+  const res = Api('Product');
   return{ props: {
     data : (await res).data,
     rate: (await resRate).data.rates

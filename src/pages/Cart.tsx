@@ -1,33 +1,37 @@
 import React, {FC, useEffect, useState} from 'react';
 import {
   addRates,
-  getCookies,
-  getCurrency,
-  getRates,
   myProduct,
+  Rate,
   setRate,
   useAppDispatch,
-  useAppSelector
+  useAppSelector,
+  getAllCookies
 } from '../component/config';
 import styles from '../styles/Home.module.scss';
 import {CartProduct} from '../component/cart';
 import { getTotalAmount } from '../component/config';
+import { GetServerSideProps } from 'next';
 
 
-const Cart:FC = () => {
-  const [data, setData] = useState('')
+interface Props {
+  cartCookie: myProduct[],
+  currenncy: Rate,
+  rates: Rate[]
+}
+
+const Cart:FC<Props> = ({cartCookie, currenncy, rates}) => {
+  let total = 0;
+  const [data, setData] = useState(() => cartCookie.map( (item:myProduct)=> {
+    total += item.price * item.Quantity;
+    return <CartProduct product={item} key={item.Quantity * Math.random()} />
+  }))
+
   const rate = useAppSelector(state => state.rate.singleRate)
   const dispatch = useAppDispatch();
-
   useEffect(() => {
-    dispatch(setRate(getCurrency()))
-    dispatch(addRates(getRates()))
-    let datas = getCookies();
-    let total = 0;
-    setData(datas.map( (item:myProduct)=> {
-      total += item.price * item.Quantity;
-      return <CartProduct product={item} key={item.Quantity * Math.random()} />
-    }))
+    dispatch(setRate(currenncy))
+    dispatch(addRates(rates))
     dispatch(getTotalAmount(total))
   }, [])
   
@@ -48,6 +52,17 @@ const Cart:FC = () => {
     </div>
     </>
   );
+}
+
+export const getServerSideProps: GetServerSideProps = async ({req}) => {
+  const cartCookie = getAllCookies(req)
+  return{
+    props :{
+      cartCookie: JSON.parse(cartCookie.cartItem),
+      currenncy: JSON.parse(cartCookie.currency),
+      rates: JSON.parse(cartCookie.rates)
+    }
+  }
 }
 
 
