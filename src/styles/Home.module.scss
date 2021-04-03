@@ -649,6 +649,8 @@ $zfixed: 100;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
     margin: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
     .left {
       .main {
         text-align: center;

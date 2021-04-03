@@ -2,6 +2,18 @@ import React, {FC} from 'react'
 import styles from '../../styles/Home.module.scss'
 import Product from './Product';
 import { myProduct, useAppSelector } from '../config';
+import { motion } from "framer-motion";
+
+
+
+const stagger = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
 
 interface props{
   nextpage?: number;
@@ -14,15 +26,15 @@ const ProductList:FC <props>= ({nextpage, curentpage}) => {
     return <Product product={product} key={product.id * Math.random() }/>
   })
   return(
-    <>
+    <motion.div initial='initial' animate='animate' exit={{ opacity: 0 }}>
       <div className={`${styles.section} ${styles.featured}`}>
-        <div className={`${styles.featured__container} ${styles.bd_grid}`}>
+      <motion.div variants={stagger} className={`${styles.featured__container} ${styles.bd_grid}`}>
           { 
            listProducts
           }
-        </div>
+      </motion.div>
       </div>
-    </>
+    </motion.div>
   );
 }
 export default ProductList;
