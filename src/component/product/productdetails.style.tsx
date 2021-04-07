@@ -106,4 +106,3 @@ export const TotalContainer = styled.div`
   	font-size: 1.5rem;
 	}
 `
-export default () => {}

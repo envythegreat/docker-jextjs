@@ -3,7 +3,7 @@ import React,{FC, useEffect, useState} from 'react';
 import {AddCartButton} from '../../component/cart';
 import {addRates, Api, getCurrency, getRates, myProduct, setRate, useAppDispatch, useAppSelector } from '../../component/config';
 import { GetServerSideProps } from 'next';
-import { GobackButton, LeftGridProduct, ProductBody, ProductContainer, ProductHeader, ProductImg, QuantImg, Quantity, RightGridProduct, TotalContainer } from './productdetails.style';
+import { GobackButton, LeftGridProduct, ProductBody, ProductContainer, ProductHeader, ProductImg, QuantImg, Quantity, RightGridProduct, TotalContainer } from '../../component/product/productdetails.style';
 import {ChevronLeft, ChevronRight} from 'react-feather'
 
 
