@@ -1,10 +1,11 @@
 import React, {FC, useEffect, useRef, useState} from 'react';
-import styles from '../../styles/Home.module.scss'
-import Link from 'next/link';
+// import styles from '../../styles/Home.module.scss'
+// import Link from 'next/link';
 import { myProduct, useAppSelector, } from '../config/';
 import {AddCartButton} from '../cart';
 import { useRouter } from 'next/router'
 import { motion } from "framer-motion";
+import {AddToCart, Card, ImageOverlay, Areame, ProductFront, ProductImg, ProductName, ProductPrice, Stats, StatsContainer, ViewDetails} from './product.styles'
 
 
 
@@ -33,13 +34,40 @@ interface PropsProduct {
 const Product:FC<PropsProduct> = ({product}) => {
   // const dispatch = useAppDispatch();
   const limitString =  (length: number, str: string) => {
-    return str.length > length ? str.substring(0, length) + ".." : str;
+    return str.length > length ? str.substring(0, length) : str;
   }
   const rate = useAppSelector(state => state.rate.singleRate)
   const router = useRouter()
   return(
     <>
-      <motion.div className={styles.card} variants={fadeInUp} whileHover={{ scale: 1.05 }}whileTap={{ scale: 0.95 }}>
+      <Card >
+        <ProductFront>
+          <ProductImg src={product.image} alt="" />
+          <ImageOverlay />
+          <ViewDetails 
+            onClick={
+              () => {
+                router.push({
+                  pathname: '/Product/[id]',
+                  query: { id: product.id }
+                })
+              }  
+            }
+          > View Details </ViewDetails>
+          <Stats>
+            <StatsContainer>
+              <Areame>
+                <ProductPrice>{(product.price * rate['rate']).toFixed(2)} {rate['sign']}</ProductPrice>
+                <ProductName>{limitString(15, product.title)}</ProductName>
+              </Areame>
+              
+              {/* <ProductDesc>{limitString(80, product.description)}</ProductDesc> */}
+              <AddToCart>Add to Cart</AddToCart>
+            </StatsContainer>
+          </Stats>
+        </ProductFront>
+      </Card>
+      {/* <motion.div className={styles.card} variants={fadeInUp} whileHover={{ scale: 1.05 }}whileTap={{ scale: 0.95 }}>
         <motion.img src={product.image} alt="" initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.2 }} />
         <div className={styles.content}>
           <div className={styles.row}>
@@ -62,7 +90,7 @@ const Product:FC<PropsProduct> = ({product}) => {
             <AddCartButton product={product} />
           </div>
         </div>
-      </motion.div>
+      </motion.div> */}
     </>
   );
 }

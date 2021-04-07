@@ -4,7 +4,8 @@ import {AddCartButton} from '../../component/cart';
 import {addRates, Api, getCurrency, getRates, myProduct, setRate, useAppDispatch, useAppSelector } from '../../component/config';
 import styles from '../../styles/Home.module.scss';
 import { GetServerSideProps } from 'next';
-import { motion } from "framer-motion";
+import { GobackButton, LeftGridProduct, ProductBody, ProductContainer, ProductHeader, ProductImg, QuantImg, Quantity, RightGridProduct, TotalContainer } from './productdetails.style';
+import {ChevronLeft, ChevronRight} from 'react-feather'
 
 let easing = [0.6, -0.05, 0.01, 0.99];
 
@@ -59,7 +60,36 @@ const Product:FC<Props> = ({product}) => {
     }
   return(
     <>
-        <motion.div initial='initial' animate='animate' exit={{ opacity: 0 }} className={`${styles.section} ${styles.product_detail}`}>
+      <ProductContainer>
+        {/* <ProductHeader>
+          <GobackButton />
+        </ProductHeader> */}
+        <ProductBody>
+          <LeftGridProduct>
+            <h2>{product.title}</h2>
+            <h3>{(product.price * rate['rate']).toFixed(2)} {rate['sign']}</h3>
+            <ProductImg src={product.image} alt="" />
+          </LeftGridProduct>
+          <RightGridProduct>
+            <p>{product.description}</p>
+            <Quantity>
+              QUANTITY
+              <ChevronLeft  onClick={quantity == 0 ? null : minusOne}  color="#d8d8d8" style={{cursor: 'pointer'}} />
+                <span>{quantity}</span>
+              <ChevronRight onClick={addOne} color="#d8d8d8" style={{cursor: 'pointer'}} />
+            </Quantity>
+            <TotalContainer>
+              <div>
+                <p>{((product.price * rate['rate']) * quantity).toFixed(2)} {rate['sign']}</p>
+              </div>
+              <div>
+                <AddCartButton product={myPro} />
+              </div>
+            </TotalContainer>
+          </RightGridProduct>
+        </ProductBody>
+      </ProductContainer>
+        {/* <motion.div initial='initial' animate='animate' exit={{ opacity: 0 }} className={`${styles.section} ${styles.product_detail}`}>
           <div className={`${styles.details}`}>
             <div className={styles.left}>
               <motion.div className={styles.main} animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
@@ -93,7 +123,7 @@ const Product:FC<Props> = ({product}) => {
               <motion.p variants={fadeInUp}> {product.description} </motion.p>
             </div>
           </div>
-        </motion.div>
+        </motion.div> */}
     </>
   );
 }

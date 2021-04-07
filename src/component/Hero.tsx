@@ -15,7 +15,7 @@ function Hero() {
             <Link href="/Products"><a className={styles.button}>GO SHOPPING</a></Link>
           </div>
           
-          {/* <img src="./images/home.png" alt="pp" className={styles.home__img} /> */}
+          <img src="./images/home.png" alt="pp" className={styles.home__img} />
         </div>
       </div>
     </>

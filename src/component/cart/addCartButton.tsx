@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React,{FC, useState} from 'react';;
 import styles from '../../styles/Home.module.scss';
 import { myProduct, SetNewItem } from '../config';
+import { AddCart } from './cart.styles';
 
 
 interface PropsCart {
@@ -18,7 +19,21 @@ const AddCartButton:FC<PropsCart> = ({product:{id,image,title,price, Quantity}})
   }
   return (
     <>
-      <button 
+      <AddCart
+        onClick={() => 
+          {
+            buttonText === 'Go To Cart'
+            ? null
+            : SetNewItem(cartProduct)
+              setText('Go To Cart')
+          }
+        }
+      >
+        {buttonText === 'Go To Cart'
+          ?(<Link href="/Cart" >{buttonText}</Link> )
+          : 'Add To Cart'}
+      </AddCart>
+      {/* <button 
         className={styles.addcart__btn}
         onClick={() => 
           {
@@ -30,7 +45,7 @@ const AddCartButton:FC<PropsCart> = ({product:{id,image,title,price, Quantity}})
         }
       >{buttonText === 'Go To Cart'
           ?(<Link href="/Cart" >{buttonText}</Link> )
-          : 'Add To Cart'}</button>
+          : 'Add To Cart'}</button> */}
     </>
   )
 }
