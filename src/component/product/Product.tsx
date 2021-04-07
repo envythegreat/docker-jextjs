@@ -1,11 +1,19 @@
-import React, {FC, useEffect, useRef, useState} from 'react';
-// import styles from '../../styles/Home.module.scss'
-// import Link from 'next/link';
+import React, {FC} from 'react';
 import { myProduct, useAppSelector, } from '../config/';
 import {AddCartButton} from '../cart';
 import { useRouter } from 'next/router'
-import { motion } from "framer-motion";
-import {AddToCart, Card, ImageOverlay, Areame, ProductFront, ProductImg, ProductName, ProductPrice, Stats, StatsContainer, ViewDetails} from './product.styles'
+import {
+  Card,
+  ImageOverlay,
+  Areame,
+  ProductFront,
+  CardProductImg,
+  ProductName,
+  ProductPrice,
+  Stats,
+  StatsContainer,
+  ViewDetails
+} from './product.styles'
 
 
 
@@ -42,7 +50,7 @@ const Product:FC<PropsProduct> = ({product}) => {
     <>
       <Card >
         <ProductFront>
-          <ProductImg src={product.image} alt="" />
+          <CardProductImg src={product.image} alt="" />
           <ImageOverlay />
           <ViewDetails 
             onClick={
@@ -62,7 +70,7 @@ const Product:FC<PropsProduct> = ({product}) => {
               </Areame>
               
               {/* <ProductDesc>{limitString(80, product.description)}</ProductDesc> */}
-              <AddToCart>Add to Cart</AddToCart>
+              <AddCartButton product={product} />
             </StatsContainer>
           </Stats>
         </ProductFront>

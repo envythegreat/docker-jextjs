@@ -1,10 +1,33 @@
 
 import React,{FC, useEffect, useState} from 'react';
 import {AddCartButton} from '../../component/cart';
-import {addRates, Api, getCurrency, getRates, myProduct, setRate, useAppDispatch, useAppSelector } from '../../component/config';
+import {
+  addRates,
+  Api,
+  getCurrency,
+  getRates,
+  myProduct,
+  setRate,
+  useAppDispatch,
+  useAppSelector
+} from '../../component/config';
+
 import { GetServerSideProps } from 'next';
-import { GobackButton, LeftGridProduct, ProductBody, ProductContainer, ProductHeader, ProductImg, QuantImg, Quantity, RightGridProduct, TotalContainer } from '../../component/product/productdetails.style';
-import {ChevronLeft, ChevronRight} from 'react-feather'
+
+import {
+  LeftGridProduct,
+  ProductBody,
+  ProductContainer,
+  ProductImg,
+  Quantity,
+  RightGridProduct,
+  TotalContainer
+} from '../../component/product/product.styles';
+
+import {
+  ChevronLeft,
+  ChevronRight
+} from 'react-feather'
 
 
 interface Props {
@@ -41,10 +64,11 @@ const Product:FC<Props> = ({product}) => {
         <ProductBody>
           <LeftGridProduct>
             <h2>{product.title}</h2>
-            <h3>{(product.price * rate['rate']).toFixed(2)} {rate['sign']}</h3>
+            
             <ProductImg src={product.image} alt="" />
           </LeftGridProduct>
           <RightGridProduct>
+            <h3>{(product.price * rate['rate']).toFixed(2)} {rate['sign']}</h3>
             <p>{product.description}</p>
             <Quantity>
               QUANTITY

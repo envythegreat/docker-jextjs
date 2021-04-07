@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import React,{FC, useState} from 'react';;
-import styles from '../../styles/Home.module.scss';
 import { myProduct, SetNewItem } from '../config';
 import { AddCart } from './cart.styles';
 
